@@ -91,14 +91,14 @@ function healthinsurance() {
         <button className={styles.moreButton}>
           more members <FaAngleDown size={10} />
         </button>
-        <button className={styles.continueButton} onClick={()=>{router.push('./health1')}}>
+        <button className={styles.continueButton} onClick={()=>{router.push('./health1') , undefined, { scroll: true }}}>
           Continue <FaChevronRight size={10} />
         </button>
 
         <p className={styles.disclamir}>
           By clicking on 'Continue', you agree to our{" "}
-          <b className={styles.terms}> privacy policy, termsof use </b> &{" "}
-          <b className={styles.terms}> Disclamir</b>
+          <b className={styles.terms}> privacy policy, terms of use </b> &{" "}
+          <b className={styles.terms}> Disclaimer</b>
         </p>
       </div>
       <Footer />

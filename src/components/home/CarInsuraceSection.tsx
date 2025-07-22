@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
+
 import styles from "@/styles/components/home/CarInsuranceSection.module.css";
 
 const INSURANCELIST = [
@@ -74,6 +76,7 @@ function CarInsuraceSection() {
 
       <div className={styles.list}>
         {INSURANCELIST.map((item, index) => (
+          
           <div
             className={styles.item}
             key={index}

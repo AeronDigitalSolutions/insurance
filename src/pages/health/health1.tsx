@@ -7,12 +7,18 @@ import manicon from '@/assets/health/manicon.webp';
 import Image from 'next/image';
 import UserDetails from "@/components/ui/UserDetails";
 import { IoIosArrowBack } from "react-icons/io";
+import { useEffect } from 'react';
+
 
 const Health1 = () => {
+  useEffect(() => {
+    // Scroll after DOM is painted
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
+  }, []);
     const router = useRouter();
-React.useEffect(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}, []);
+
   //    const handleClick = () => {
   //   router.push('./health3');
   // };
