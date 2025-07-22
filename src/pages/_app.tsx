@@ -31,8 +31,8 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router]);
-
-  return <Component {...pageProps} />;
+return(
+  <SessionProvider session={(pageProps as any).session}><Component {...pageProps}/></SessionProvider>
+)
 }
 
-export default MyApp;
