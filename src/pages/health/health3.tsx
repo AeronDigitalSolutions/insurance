@@ -10,8 +10,17 @@ import UserDetails from "@/components/ui/UserDetails";
 import { useRouter } from "next/router";
 
 const Health3 = () => {
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
 
+useEffect(() => {
+  // Scroll after DOM is painted
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  });
+}, []);
+
+
+
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const cities = [
     "Delhi",
     "Bengaluru",
@@ -27,9 +36,6 @@ const Health3 = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
 
   return (
     <div>

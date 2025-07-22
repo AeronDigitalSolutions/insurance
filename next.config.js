@@ -4,4 +4,11 @@ const nextConfig = {
   // other settings
 };
 
+// In next.config.js
+module.exports = {
+  experimental: {
+    scrollRestoration: true,
+  },
+};
+
 module.exports = nextConfig;

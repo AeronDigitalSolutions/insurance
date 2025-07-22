@@ -91,7 +91,7 @@ function healthinsurance() {
         <button className={styles.moreButton}>
           more members <FaAngleDown size={10} />
         </button>
-        <button className={styles.continueButton} onClick={()=>{router.push('./health1')}}>
+        <button className={styles.continueButton} onClick={()=>{router.push('./health1') , undefined, { scroll: true }}}>
           Continue <FaChevronRight size={10} />
         </button>
 
