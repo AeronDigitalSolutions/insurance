@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { useRouter } from "next/router";
 import styles from "@/styles/pages/statemanager.module.css";
-import withAuth from "@/lib/withAuth";
+import axios from "axios";
 import {
   FiUsers,
   FiBarChart2,
@@ -31,6 +31,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import { useUser } from "@/lib/hooks/useUser";
 
 const agents = [
   {
@@ -115,6 +116,20 @@ const sidebarMenu = [
   },
 ];
 
+type Manager = {
+  _id: string;
+  managerId: number;
+  name: string;
+  email: string;
+  password: string;
+  location: {
+    district: string;
+    state: string;
+  };
+  category: 'national' | 'state' | 'district';
+  assignedTo: string | null;
+};
+
 
 const stateManagerDashboard = () => {
   const router = useRouter();
@@ -126,6 +141,29 @@ const stateManagerDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [formattedTotalSales, setFormattedTotalSales] = useState("");
   const [formattedMonthlySales, setFormattedMonthlySales] = useState("");
+
+  const [districtManagers, setDistrictManagers] = useState<Manager[]>([]);
+
+  const {user} = useUser();
+
+  //table logic to get all district managers
+ useEffect(() => {
+  const fetchDistrictManagers = async () => {
+    try {
+      const res = await axios.get('/api/manager/getdistrictmanagers');
+      console.log("Fetched managers:", res.data);
+      
+      setDistrictManagers(res.data.data);
+    } catch (error) {
+      console.error("Error fetching district managers:", error);
+    }
+  };
+
+  fetchDistrictManagers();
+}, []);
+
+
+
   const handleLogout = () => {
   console.log("Logged out");
     router.push("/managerlogin");
@@ -161,6 +199,7 @@ const stateManagerDashboard = () => {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
+        <h1>Hi {user?.name ?? " State Manager"}</h1>
         <div className={styles.logoContainer}>
           <Image
             src={logo}
@@ -270,18 +309,18 @@ const stateManagerDashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {agents.map((agent) => (
-                      <tr key={agent.id}>
-                        <td>{agent.id}</td>
-                        <td>{agent.name}</td>
-                        <td>{agent.location}</td>
-                        <td suppressHydrationWarning>₹{agent.totalSales.toLocaleString("en-IN")}</td>
-                        <td suppressHydrationWarning>₹{agent.monthlySales.toLocaleString("en-IN")}</td>
-                        <td>{agent.clients}</td>
+                   {Array.isArray(districtManagers) &&
+                   districtManagers.map((manager) => (
+                      <tr key={manager._id}>
+                        <td>{manager.managerId || manager._id.slice(-4)}</td>
+                        <td>{manager.name}</td>
+                        <td>{manager.location?.district}, {manager.location?.state}</td>
+                        <td>₹0</td>
+                        <td>₹0</td>
+                        <td>0</td>
                         <td>
-                          
-                            <button
-                            onClick={() =>router.push("/districtmanagerdashboard")}
+                          <button
+                            onClick={() => router.push("/districtmanagerdashboard")}
                             className={styles.viewProfileButton}
                           >
                             View Profile
@@ -289,6 +328,7 @@ const stateManagerDashboard = () => {
                         </td>
                       </tr>
                     ))}
+
                   </tbody>
                 </table>
               </div>

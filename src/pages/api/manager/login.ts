@@ -1,6 +1,5 @@
 import connectDB from "@/lib/dbConnect";
 import Manager from "@/models/Manager";
-// import bcrypt from "bcryptjs";
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
@@ -39,23 +38,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const token = jwt.sign(
       {
         id: manager._id,
-        role: manager.category, // assuming 'category' is the field for role
+        role: manager.category, 
+        name: manager.name,
+    email: manager.email,
+    // assuming 'category' is the field for role
       },
       process.env.JWT_SECRET as string,
       { expiresIn: "1d" }
     );
 
     // After you generate the token:
-res.setHeader("Set-Cookie", serialize("managerToken", token, {
-  httpOnly: true, // safer, not accessible via JS
-  path: "/",
-  maxAge: 60 * 60 * 24, // 1 day
-}));
+      res.setHeader("Set-Cookie", serialize("managerToken", token, {
+        httpOnly: true, // safer, not accessible via JS
+        path: "/",
+        maxAge: 60 * 60 * 24, // 1 day
+      }));
 
     return res.status(200).json({
       token,
       role: manager.category,
       name: manager.name,
+      
     });
 
   } catch (error) {
