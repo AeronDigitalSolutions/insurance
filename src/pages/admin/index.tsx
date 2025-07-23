@@ -1,11 +1,12 @@
-import { verifyToken } from '@/utils/verifyToken';
+// pages/admin.tsx
+
 import { GetServerSideProps } from 'next';
+import { verifyToken } from '@/utils/verifyToken';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const token = context.req.cookies['admin-token']; // or read from header/localStorage workaround
+  const token = context.req.cookies['admin-token'];
   const data = token ? verifyToken(token) : null;
 
-  // Ensure data is an object and has a 'role' property
   if (
     !data ||
     typeof data !== 'object' ||
@@ -24,14 +25,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { adminData: data } };
 };
 
-import React from 'react';
-
-const AdminDashboard = () => {
+// ✅ Default React Component
+export default function AdminPage({ adminData }: { adminData: any }) {
   return (
-    <div>
-      <h1>Welcome to Admin Dashboard</h1>
+    <div className="p-4">
+      <h1 className="text-xl font-bold">Welcome Admin: {adminData?.userName}</h1>
+      {/* Add more content here */}
     </div>
   );
-};
-
-export default AdminDashboard;
+}
