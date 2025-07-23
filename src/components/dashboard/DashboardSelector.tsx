@@ -1,16 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import {
+  FaHome,
+  FaUser,
+  FaFileAlt,
+  FaClipboard,
+  FaShieldAlt,
+  FaQuestionCircle,
+  FaChevronRight,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import styles from "@/styles/components/dashboard/DashboardSelector.module.css";
-import Image from "next/image";
+import { IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft } from "react-icons/io";
 
-import { FaChevronDown } from "react-icons/fa";
-
-const LIST = [
-  { id: 0, name: "Dashboard", image: require("@/assets/dashboard/list/1.png") },
-  { id: 1, name: "Profile", image: require("@/assets/dashboard/list/1.png") },
-  { id: 2, name: "My Policy", image: require("@/assets/dashboard/list/1.png") },
-  { id: 3, name: "Claims", image: require("@/assets/dashboard/list/1.png") },
-  { id: 4, name: "KYC", image: require("@/assets/dashboard/list/1.png") },
-  { id: 5, name: "Get help", image: require("@/assets/dashboard/list/1.png") },
+const MENU_GROUPS = [
+  {
+    title: "Menu",
+    items: [{ id: 0, name: "Dashboard", icon: <FaHome /> }],
+  },
+  {
+    title: "Account",
+    items: [
+      { id: 1, name: "Profile", icon: <FaUser /> },
+      { id: 2, name: "My Policy", icon: <FaFileAlt /> },
+    ],
+  },
+  {
+    title: "Policy",
+    items: [
+      { id: 3, name: "Claims", icon: <FaClipboard /> },
+      { id: 4, name: "KYC", icon: <FaShieldAlt /> },
+    ],
+  },
+  {
+    title: "Security",
+    items: [{ id: 5, name: "Get Help", icon: <FaQuestionCircle /> }],
+  },
 ];
 
 function DashboardSelector({
@@ -18,83 +44,64 @@ function DashboardSelector({
   setSelected,
 }: {
   selected: number;
-  setSelected: any;
+  setSelected: (id: number) => void;
 }) {
-  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const handleLinkClick = (id: number) => {
+    setSelected(id);
+    setIsMobileOpen(false); // close sidebar on mobile after selection
+  };
+
   return (
     <>
-      <div className={styles.mobileCont}>
-        <div
-          className={` ${styles.active} ${styles.mobileitem}`}
-          onClick={() => {
-            setShowDropDown((prev) => !prev);
-          }}
-          onBlur={() => {
-            setShowDropDown(false);
-          }}
+      {/* Mobile toggle button */}
+      <div className={styles.mobileToggle}>
+        <button
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          className={styles.toggleButton}
         >
-          <Image
-            src={LIST[selected].image}
-            alt={LIST[selected].name}
-            className={styles.image}
-          />
-          <div className={styles.name}>{LIST[selected].name}</div>
-          <FaChevronDown />
-        </div>
-        {showDropDown && (
-          <div className={styles.dropdown}>
-            {LIST.map((item, index) => {
-              console.log(item);
+          {isMobileOpen ? <IoIosArrowDropleft /> : <IoIosArrowDropright />}
+        </button>
+      </div>
 
-              return (
+      {/* Sidebar */}
+      <div
+        className={`${styles.sidebar} ${
+          isMobileOpen ? styles.mobileOpen : styles.mobileClosed
+        }`}
+      >
+        {MENU_GROUPS.map((group, index) => (
+          <div key={index} className={styles.section}>
+            <div className={styles.sectionTitle}>{group.title}</div>
+            <div className={styles.links}>
+              {group.items.map((item) => (
                 <div
                   key={item.id}
-                  className={`${styles.mobileitem}`}
-                  onClick={() => {
-                    setSelected(item.id);
-                    setShowDropDown(false);
-                  }}
+                  className={`${styles.linkItem} ${
+                    selected === item.id ? styles.active : ""
+                  }`}
+                  onClick={() => handleLinkClick(item.id)}
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    className={styles.image}
-                  />
-                  <div className={styles.name}>{item.name}</div>
+                  <span className={styles.icon}>{item.icon}</span>
+                  <span className={styles.linkText}>{item.name}</span>
+                  {[
+                    "Project",
+                    "Auth Pages",
+                    "Extra Pages",
+                    "Components",
+                    "Extended UI",
+                    "Forms",
+                  ].includes(item.name) && (
+                    <span className={styles.arrow}>
+                      <FaChevronRight />
+                    </span>
+                  )}
                 </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-      <div className={styles.cont}>
-        {LIST.map((item, index) => {
-          console.log(item);
-
-          return (
-            <div
-              key={item.id}
-              className={`${styles.item} ${
-                selected == item.id ? styles.active : ""
-              }`}
-              onClick={() => {
-                setSelected(item.id);
-              }}
-            >
-              <Image
-                src={item.image}
-                alt={item.name}
-                className={styles.image}
-              />
-              <div className={styles.name}>{item.name}</div>
+              ))}
             </div>
-          );
-        })}
-        <Image
-          src={require("@/assets/dashboard/list/bottom.png")}
-          alt="decoration"
-          className={styles.bottomImage}
-        />
+          </div>
+        ))}
       </div>
     </>
   );

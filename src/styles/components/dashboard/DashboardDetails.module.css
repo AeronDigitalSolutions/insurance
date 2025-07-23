@@ -1,149 +1,178 @@
-.cont {
-  background-color: #fafafa;
+
+.wrapper {
   padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: "Inter", sans-serif;
 }
 
-.top {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
-.topLeft {
+.header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
 }
 
-.topRight {
+.policyInfo {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 0.8rem;
 }
 
-.policyButton {
+.policyText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.policyCount {
   background-color: #1c75bb;
+  color: white;
+  border-radius: 50%;
   height: 35px;
   width: 35px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-}
-
-.content {
-  background-color: white;
-  height: 93%;
-}
-
-.insuranceItem {
-  width: 95%;
-  padding: 2.5%;
-  display: grid;
-  gap: 20px;
-}
-
-.insuranceHead {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.insuranceImage {
-  height: 100px;
-  width: 150px;
-}
-
-.insuranceTitle {
-}
-
-.head {
-  color: #1c75bb;
-  font-size: 20px;
-}
-
-.insuranceText {
-  font-size: 30px;
-  color: red;
-}
-
-.insuranceBottom {
-  display: grid;
-  gap: 20px;
-}
-
-.insuranceDetails {
-  display: flex;
-}
-
-.insuranceDetailsTitle {
-  color: grey;
-}
-
-.renewButton {
-  margin-top: 20px;
-  background-color: #1c75bb;
-  border-radius: 16px;
-  justify-self: flex-start;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.renewButton:hover {
-  background-color: #c4e6ff;
-  color: #1c75bb;
-}
-
-.renewButton:active {
-  scale: 0.9;
-}
-
-.optionCont {
-}
-
-.option {
-  margin: 2.5%;
-  display: grid;
-  grid-template-columns: 0.4fr 4fr 1fr;
-
-  align-items: center;
-  background-color: #f7f7f7;
-  padding: 10px;
-  gap: 20px;
-}
-
-.icon {
-  font-size: 35px;
-  background-color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
-  justify-self: flex-start;
-}
-
-.optionName {
-  font-size: 18px;
   font-weight: bold;
 }
 
-.optionDewsc {
-  font-weight: 100;
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.rightArrowDiv {
-  justify-self: flex-end;
-  padding-right: 20px;
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 600px) {
-  .insuranceHead {
-    display: grid;
+.carImage {
+  height: 100px;
+  width: 150px;
+  object-fit: contain;
+}
+
+.cardText h3 {
+  color: #1c75bb;
+  font-size: 22px;
+  margin: 0;
+}
+
+.expireText {
+  font-size: 18px;
+  color: red;
+  margin-top: 0.3rem;
+}
+
+.cardBottom {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.infoGroup {
+  font-size: 16px;
+}
+
+.label {
+  color: #555;
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.renewBtn {
+  background-color: #1c75bb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: fit-content;
+}
+
+.renewBtn:hover {
+  background-color: #cce6ff;
+  color: #1c75bb;
+}
+
+.optionsList {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.optionCard {
+  display: grid;
+  grid-template-columns: 60px 1fr 30px;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.optionIcon {
+  background: white;
+  padding: 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+  font-size: 28px;
+  color: #1c75bb;
+}
+
+.optionDetails h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.optionDetails p {
+  font-size: 14px;
+  color: #555;
+}
+
+.optionArrow {
+  text-align: right;
+  font-size: 18px;
+  color: #999;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .cardTop {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .insuranceImage {
-    justify-self: center;
-    width: 200px;
-    height: 130px;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+.policyInfo{
+  display: none;
+}
+  .optionCard {
+    grid-template-columns: 50px 1fr 25px;
   }
 }

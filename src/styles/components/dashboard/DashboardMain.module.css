@@ -1,17 +1,28 @@
-.cont {
-  display: grid;
-  width: 90%;
-  gap: 20px;
-  grid-template-columns: 1fr 2fr;
-  margin-left: 5%;
-  margin-right: 5%;
 
-  margin-top: 7rem;
-  margin-bottom: 7rem;
+.wrapper {
+  display: flex;
+  gap: 20px;
+  width: 98%;
+  margin: 1rem auto;
+  font-family: "Inter", sans-serif;
 }
 
+
+.mainContent {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 100vh;
+}
+
+/* Responsive */
 @media screen and (max-width: 800px) {
-  .cont {
-    grid-template-columns: 1fr;
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    padding: 10px;
   }
 }

@@ -1,99 +1,128 @@
+"use client";
 import React, { useState } from "react";
-
 import { LuUser } from "react-icons/lu";
-
 import styles from "@/styles/components/dashboard/DashboardProfile.module.css";
-import FloatingLabelInput from "../ui/FloatingLabelInput";
 
-function DashboardProfile() {
-  const [firstName, setFirstName] = useState<any>();
-  const [lastName, setLastName] = useState<any>();
-  const [email, setEmail] = useState<any>();
-  const [number, setNumber] = useState<any>();
-  const [DOB, setDOB] = useState<any>();
-  const [income, setIncome] = useState<any>();
-  const [maritalStatus, setMaritalStatus] = useState<any>();
-  const [city, setCity] = useState<any>();
-  const [annualIncome, setAnnualIncome] = useState<any>();
+const DashboardProfile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [DOB, setDOB] = useState("");
+  const [income, setIncome] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
+  const [city, setCity] = useState("");
+  const [annualIncome, setAnnualIncome] = useState("");
+
   return (
-    <div className={styles.cont}>
-      <div>
-        Hi, Demo user <LuUser />
-      </div>
-      <div className={styles.inner}>
-        <div className={styles.header}>Personal Details</div>
-        <div className={styles.line}></div>
-        <div className={styles.form}>
-          <FloatingLabelInput
-            label="First Name"
+    <div className={styles.wrapper}>
+      <h2 className={styles.heading}>Personal Deatails</h2>
+
+      <div className={styles.formGrid}>
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>First Name</label>
+          <input
+            type="text"
+            placeholder="Enter first name"
             value={firstName}
-            onChange={setFirstName}
-            id="firstname"
-            type="text"
+            onChange={(e) => setFirstName(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Last Name"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Last Name</label>
+          <input
+            type="text"
+            placeholder="Enter last name"
             value={lastName}
-            onChange={setLastName}
-            id="lastname"
-            type="text"
+            onChange={(e) => setLastName(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Email"
-            value={email}
-            onChange={setEmail}
-            id="email"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Email</label>
+          <input
             type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Mobile Number"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Mobile Number</label>
+          <input
+            type="text"
+            placeholder="Enter mobile number"
             value={number}
-            onChange={setNumber}
-            id="number"
-            type="number"
+            onChange={(e) => setNumber(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Date of Birth"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Date of Birth</label>
+          <input
+            type="date"
             value={DOB}
-            onChange={setDOB}
-            id="dob"
-            type="Date"
+            onChange={(e) => setDOB(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Annual Income"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Annual Income</label>
+          <input
+            type="number"
+            placeholder="Enter income"
             value={income}
-            onChange={setIncome}
-            id="income"
-            type="number"
+            onChange={(e) => setIncome(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Marital Status"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Marital Status</label>
+          <input
+            type="text"
+            placeholder="Enter status"
             value={maritalStatus}
-            onChange={setMaritalStatus}
-            id="married"
-            type="text"
+            onChange={(e) => setMaritalStatus(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="City"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>City</label>
+          <input
+            type="text"
+            placeholder="Enter city"
             value={city}
-            onChange={setCity}
-            id="city"
-            type="text"
+            onChange={(e) => setCity(e.target.value)}
+            className={styles.input}
           />
-          <FloatingLabelInput
-            label="Annual Income"
-            value={annualIncome}
-            onChange={setAnnualIncome}
-            id="annIncome"
+        </div>
+
+        <div className={styles.inputDiv}>
+          <label className={styles.label}>Annual Income</label>
+          <input
             type="number"
+            placeholder="Enter annual income"
+            value={annualIncome}
+            onChange={(e) => setAnnualIncome(e.target.value)}
+            className={styles.input}
           />
         </div>
-        <div className={styles.bottomButton}>
-          <button className={styles.button}>Save Details</button>
-        </div>
+      </div>
+
+      <div className={styles.buttonContainer}>
+        <button className={styles.button}>Save Details</button>
       </div>
     </div>
   );
-}
+};
 
 export default DashboardProfile;
