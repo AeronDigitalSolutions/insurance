@@ -1,6 +1,5 @@
 // models/Manager.js
 import mongoose from 'mongoose';
-import Counter from './Counter';
 
 const managerSchema = new mongoose.Schema({
  managerId: {

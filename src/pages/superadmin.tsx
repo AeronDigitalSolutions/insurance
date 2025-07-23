@@ -1,3 +1,4 @@
+// Move "use client" to very top as required by Next.js
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const { admin , loading} = useAdmin();
-  console.log("Admin data:", admin?.userName);
+  // console.log("Admin data:", admin?.userName);
 
   const handleLogout = () => {
     console.log("Logged out");
