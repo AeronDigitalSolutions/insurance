@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   place-items: center;
-  height: 4rem;
+  height: 5rem;
   width: 100vw;
   padding: 10px 0;
   z-index: 3;
@@ -166,7 +166,7 @@ animation: dropdownAnimation 0.3s ease-in;
   background-color: #fa621a;
   padding: 10px 32px;
   font-size: 20px;
-  transition: all 0.4s;
+  /* transition: all 0.4s; */
 }
 
 .loginLogo{
@@ -174,14 +174,14 @@ animation: dropdownAnimation 0.3s ease-in;
   font-size: 20px;
   translate: 0 3px;
 }
-
+/* 
 .loginText:hover {
   translate: 0 -10px;
 }
 
 .loginText:active {
   scale: 0.9;
-}
+} */
 
 @media screen and (max-width: 1200px) {
   .menuCont {

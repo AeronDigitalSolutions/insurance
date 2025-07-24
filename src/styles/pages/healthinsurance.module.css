@@ -15,8 +15,7 @@
   font-size: 40px;
 }
 
-.switchCont {
-}
+.switchCont {}
 
 .switch {
   all: unset;
@@ -25,12 +24,13 @@
   background-color: #eef5ff;
   cursor: pointer;
   transition: all 0.5s;
+  margin-right: 1rem;
 }
 
 .selectedSwitch {
   background-color: #37b37e;
   color: white;
-      margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .middle {
@@ -77,38 +77,30 @@
   cursor: pointer;
 }
 
-.moreButton {
-  all: unset;
-  color: #45b786;
-  border-style: none none dotted none;
-  cursor: pointer;
-  transition: all 0.5s;
-}
 
-.moreButton:active {
-  transform: scale(0.9);
-}
 
 .continueButton {
   all: unset;
   background-color: #ff5631;
-  margin-top: 50px;
+
   margin-bottom: 50px;
   color: white;
   padding: 10px 100px;
   border-radius: 10px;
   transition: all 0.5s;
+
+  margin-top: 15px;
 }
+
 .continueButton:active {
   transform: scale(0.9);
 }
 
-.disclamir {
-}
 
 .terms {
   color: #7bafff;
 }
+
 /* For screens 1000px and below: 2 columns */
 
 @media screen and (max-width: 1000px) {
@@ -119,7 +111,7 @@
   }
 
   .item {
-  grid-template-columns: 1fr;
-  text-align: center;
-}
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
